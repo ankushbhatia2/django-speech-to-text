@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.http.response import HttpResponse, JsonResponse
 from django.views import generic
 from os import path
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
 
 import speech_recognition as sr
 import requests
