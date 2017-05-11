@@ -1,13 +1,13 @@
 from django.shortcuts import render
 from django.http.response import HttpResponse, JsonResponse
 from django.views import generic
-from os import path
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 
 import speech_recognition as sr
 import requests
 import json
+import os
 
 class SpeechToText(generic.View):
     def get(self, request, *args, **kwargs):
@@ -33,7 +33,7 @@ class SpeechToText(generic.View):
             with open('converter.wav', 'wb') as f:
                 f.write(req.content)
 
-            AUDIO_FILE = path.join(path.dirname(path.realpath(__file__)), "converter.wav")
+            AUDIO_FILE = os.path.join(os.getcwd(), "converter.wav")
 
             r = sr.Recognizer()
             with sr.AudioFile(AUDIO_FILE) as source:
